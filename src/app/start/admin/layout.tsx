@@ -1,4 +1,4 @@
-import AppSidebar from "@/components/AppSidebar/AppSidebar";
+import AdminSidebar from "@/components/AdminSidebar/AdminSidebar";
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 
 export default function StartLayout({
@@ -10,7 +10,7 @@ export default function StartLayout({
     <SidebarProvider>
       <div className="min-h-screen flex w-full bg-slate-950 overflow-hidden">
         {/* Sidebar */}
-        <AppSidebar />
+        <AdminSidebar />
 
         {/* Main Content Area */}
         <main className="flex-1 flex flex-col min-w-0 bg-slate-900 text-white h-screen overflow-hidden">

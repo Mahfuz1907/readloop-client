@@ -17,7 +17,11 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="en" className={`${pjs.className} h-full antialiased`}>
+    <html
+      suppressHydrationWarning
+      lang="en"
+      className={`${pjs.className} h-full antialiased`}
+    >
       <body className="min-h-full flex flex-col">
         {children}
         <Toaster />

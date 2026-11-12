@@ -128,7 +128,7 @@ export default function AdminOverviewPage() {
         </div>
 
         <div className="flex items-center gap-3">
-          <Link href="/start/dashboard/books/add">
+          <Link href="/start/admin/add-books">
             <Button className="bg-emerald-600 hover:bg-emerald-500 text-white font-medium text-xs sm:text-sm shadow-md shadow-emerald-600/20 flex items-center gap-2">
               <PlusCircle className="h-4 w-4" />
               <span>Add New Book</span>

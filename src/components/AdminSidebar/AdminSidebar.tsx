@@ -12,6 +12,7 @@ import {
   PlusCircle,
   Settings,
   ChevronRight,
+  FileChartColumn,
 } from "lucide-react";
 
 import {
@@ -29,16 +30,20 @@ import {
 import { GetSessionFromClient } from "@/lib/GetSessionFromClient";
 import Image from "next/image";
 
-export default function AppSidebar() {
+export default function AdminSidebar() {
   const user = GetSessionFromClient();
   const pathname = usePathname();
 
-  // নেভিগেশন আইটেম লিস্ট
   const menuItems = [
     {
       title: "Overview",
       url: "/start/admin",
       icon: LayoutDashboard,
+    },
+    {
+      title: "Categories",
+      url: "/start/admin/categories",
+      icon: FileChartColumn,
     },
     {
       title: "Book Inventory",
