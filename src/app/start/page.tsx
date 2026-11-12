@@ -15,7 +15,6 @@ import WelcomeCard from "./WelcomeCard";
 import Image from "next/image";
 
 export default function StartPage() {
-  // ডামি ফিচারড বইয়ের ডেটা (পরে এগুলো ডাটাবেজ থেকে ফেচ করতে পারবেন)
   const featuredBooks = [
     {
       id: 1,

@@ -33,15 +33,11 @@ export default function SignUpPage() {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
-    const userData = Object.fromEntries(formData) as Record<
-      string,
-      string | boolean
-    >;
+    const userData = Object.fromEntries(formData) as Record<string, string>;
     const imageUrl = userData.image;
     const finalImage = await uploadImageUrl(imageUrl as string);
     userData.image = finalImage;
     userData.role = "reader";
-    userData.approved = false;
 
     const { data, error } = await signUp.email({
       name: userData.name as string,
@@ -49,7 +45,6 @@ export default function SignUpPage() {
       password: userData.password as string,
       image: userData.image as string,
       role: userData.role as string,
-      approved: userData.approved as boolean,
     });
 
     if (data) {
@@ -240,7 +235,7 @@ export default function SignUpPage() {
           <div className="pt-4 border-t border-slate-100 text-center text-sm text-slate-500">
             Already have an account?{" "}
             <Link
-              href="/signin"
+              href="/sign-in"
               className="font-semibold text-emerald-600 hover:text-emerald-700 transition-colors"
             >
               Sign In

@@ -21,10 +21,6 @@ export const auth = betterAuth({
         type: "string",
         input: true,
       },
-      approved: {
-        type: "boolean",
-        input: true,
-      },
     },
   },
 });

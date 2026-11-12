@@ -4,18 +4,19 @@ import { BookOpen, LogOut } from "lucide-react";
 import { Button } from "../ui/button";
 import { signOut } from "@/lib/auth-client";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 const Navbar = () => {
   const router = useRouter();
   return (
     <nav className="bg-emerald-950 text-white border-b border-emerald-900/50 sticky top-0 z-20">
       <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
-        <div className="flex items-center space-x-3">
+        <Link href={"/"} className="flex items-center space-x-3">
           <div className="p-2.5 bg-emerald-600/30 rounded-xl border border-emerald-500/30 text-emerald-400">
             <BookOpen className="h-5 w-5" />
           </div>
           <span className="text-xl font-bold tracking-tight">ReadLoop</span>
-        </div>
+        </Link>
 
         <div className="flex items-center space-x-3">
           <Button

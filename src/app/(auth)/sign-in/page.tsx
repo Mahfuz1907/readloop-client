@@ -111,14 +111,14 @@ export default function SignInPage() {
           {/* Form Header */}
           <div className="space-y-2">
             <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-slate-900">
-              Create an account
+              Welcome Back
             </h2>
             <p className="text-sm text-slate-500">
-              Enter your information below to sign up as a new reader.
+              Enter your information below to sign in.
             </p>
           </div>
 
-          {/* Sign Up Form */}
+          {/* Sign In Form */}
           <form onSubmit={handleSubmit} className="space-y-4">
             <FieldGroup>
               {/* Email Address */}
@@ -181,12 +181,12 @@ export default function SignInPage() {
 
           {/* Footer Navigation */}
           <div className="pt-4 border-t border-slate-100 text-center text-sm text-slate-500">
-            Already have an account?{" "}
+            Don&apos;t have any account?{" "}
             <Link
-              href="/signin"
+              href="/sign-up"
               className="font-semibold text-emerald-600 hover:text-emerald-700 transition-colors"
             >
-              Sign In
+              Sign Up
             </Link>
           </div>
         </div>
