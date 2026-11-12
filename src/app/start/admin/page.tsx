@@ -1,5 +1,3 @@
-"use client";
-
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
@@ -22,8 +20,12 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { GetUsers } from "@/lib/actions/adminApi/adminApi";
+import { UserTypes } from "@/lib/type";
+import DeleteDialogue from "./DeleteDialog";
 
-export default function AdminOverviewPage() {
+export default async function AdminOverviewPage() {
+  const users = await GetUsers("reader");
   // 1. ডামি স্ট্যাটস ডেটা
   const stats = [
     {
@@ -36,7 +38,7 @@ export default function AdminOverviewPage() {
     },
     {
       title: "Active Readers",
-      value: "452",
+      value: users.length,
       change: "+8% from last month",
       icon: Users,
       color: "text-teal-400",
@@ -57,34 +59,6 @@ export default function AdminOverviewPage() {
       icon: Clock,
       color: "text-amber-400",
       bgColor: "bg-amber-950/40 border-amber-800/40",
-    },
-  ];
-
-  // 2. পেন্ডিং বরো রিকোয়েস্ট ডেটা
-  const pendingRequests = [
-    {
-      id: 1,
-      user: "Sadia Rahman",
-      book: "Clean Code",
-      date: "10 mins ago",
-      avatar:
-        "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150",
-    },
-    {
-      id: 2,
-      user: "Tanvir Ahmed",
-      book: "Designing Data-Intensive Applications",
-      date: "1 hour ago",
-      avatar:
-        "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150",
-    },
-    {
-      id: 3,
-      user: "Nusrat Jahan",
-      book: "The Pragmatic Programmer",
-      date: "3 hours ago",
-      avatar:
-        "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150",
     },
   ];
 
@@ -175,33 +149,26 @@ export default function AdminOverviewPage() {
             <div>
               <CardTitle className="text-lg font-bold text-white flex items-center gap-2">
                 <Clock className="h-5 w-5 text-amber-400" />
-                Pending Borrow Requests
+                Manage Users
               </CardTitle>
               <CardDescription className="text-xs text-slate-400 mt-0.5">
-                Review and approve student or reader borrowing queues.
+                Review and manage users
               </CardDescription>
             </div>
-            <Link
-              href="/start/dashboard/borrows"
-              className="text-xs font-medium text-emerald-400 hover:text-emerald-300 flex items-center gap-1 transition-colors"
-            >
-              <span>View All</span>
-              <ArrowUpRight className="h-3.5 w-3.5" />
-            </Link>
           </CardHeader>
 
           <CardContent className="pt-6">
             <div className="space-y-4">
-              {pendingRequests.map((req) => (
+              {users.map((user: UserTypes) => (
                 <div
-                  key={req.id}
+                  key={user._id}
                   className="flex flex-col sm:flex-row sm:items-center justify-between p-4 rounded-xl bg-slate-900/80 border border-slate-800 hover:border-slate-700 transition-all gap-4"
                 >
                   <div className="flex items-center gap-3.5">
                     <div className="relative h-10 w-10 rounded-full overflow-hidden border border-emerald-500/40 shrink-0 bg-emerald-950">
                       <Image
-                        src={req.avatar}
-                        alt={req.user}
+                        src={user.image}
+                        alt={user.name}
                         fill
                         sizes="40px"
                         className="object-cover"
@@ -209,34 +176,13 @@ export default function AdminOverviewPage() {
                     </div>
                     <div>
                       <h4 className="text-sm font-semibold text-white leading-snug">
-                        {req.user}
+                        {user.name}
                       </h4>
-                      <p className="text-xs text-slate-400">
-                        Requested:{" "}
-                        <span className="text-emerald-400 font-medium">
-                          {req.book}
-                        </span>
-                      </p>
-                      <span className="text-[10px] text-slate-500">
-                        {req.date}
-                      </span>
                     </div>
                   </div>
 
                   <div className="flex items-center gap-2 shrink-0 self-end sm:self-center">
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      className="h-8 border-rose-900/60 text-rose-400 hover:bg-rose-950 hover:text-rose-300 text-xs"
-                    >
-                      Reject
-                    </Button>
-                    <Button
-                      size="sm"
-                      className="h-8 bg-emerald-600 hover:bg-emerald-500 text-white text-xs shadow-md shadow-emerald-600/20"
-                    >
-                      Approve
-                    </Button>
+                    <DeleteDialogue user={user} />
                   </div>
                 </div>
               ))}

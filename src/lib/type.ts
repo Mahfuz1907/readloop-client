@@ -10,3 +10,14 @@ export interface CategoryTypes {
   categorySlug: string;
   categoryDescription: string;
 }
+
+export interface UserTypes {
+  _id: string;
+  name: string;
+  email: string;
+  emailVerified: boolean;
+  image: string;
+  createdAt: string;
+  updatedAt: string;
+  role: string;
+}

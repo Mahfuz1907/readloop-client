@@ -2,6 +2,22 @@ import { AddCategoryTypes } from "@/lib/type";
 
 const BASE_URL = process.env.NEXT_PUBLIC_API_URL;
 
+// get all users
+export const GetUsers = async (role: string) => {
+  const res = await fetch(`${BASE_URL}/users/role/${role}`);
+  const result = await res.json();
+  return result;
+};
+
+// delete user
+export const DeleteUsers = async (id: string) => {
+  const res = await fetch(`${BASE_URL}/users/delete/${id}`, {
+    method: "DELETE",
+  });
+  const result = await res.json();
+  return result;
+};
+
 // Add category
 export const AddCategory = async (data: AddCategoryTypes) => {
   const res = await fetch(`${BASE_URL}/add-category`, {

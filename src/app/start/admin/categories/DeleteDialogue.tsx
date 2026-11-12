@@ -35,8 +35,8 @@ const DeleteDialogue = ({ category }: { category: CategoryTypes }) => {
         title: "Error",
         description: "Category deletion failed",
       });
+      router.refresh();
     }
-    router.refresh();
   };
   return (
     <AlertDialog open={isDeleteOpen} onOpenChange={setIsDeleteOpen}>
