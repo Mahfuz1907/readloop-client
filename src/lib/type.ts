@@ -21,3 +21,30 @@ export interface UserTypes {
   updatedAt: string;
   role: string;
 }
+
+export interface AddBooksTypes {
+  title: string;
+  author: string;
+  description: string;
+  coverImage: string;
+  categoryName: string;
+  categorySlug: string;
+  categoryDescription: string;
+  publishedYear: number;
+  pages: number;
+  totalCopies: number;
+}
+
+export interface BooksTypes {
+  _id: string;
+  title: string;
+  author: string;
+  description: string;
+  coverImage: string;
+  categoryName: string;
+  categorySlug: string;
+  categoryDescription: string;
+  publishedYear: number;
+  pages: number;
+  totalCopies: number;
+}

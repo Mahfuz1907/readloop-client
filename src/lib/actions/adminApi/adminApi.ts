@@ -1,4 +1,4 @@
-import { AddCategoryTypes } from "@/lib/type";
+import { AddBooksTypes, AddCategoryTypes } from "@/lib/type";
 
 const BASE_URL = process.env.NEXT_PUBLIC_API_URL;
 
@@ -58,5 +58,18 @@ export const DeleteCategory = async (id: string) => {
     method: "DELETE",
   });
   const result = res.json();
+  return result;
+};
+
+// add book
+export const AddBook = async (data: AddBooksTypes) => {
+  const res = await fetch(`${BASE_URL}/add-book`, {
+    method: "POST",
+    headers: {
+      "content-type": "application/json",
+    },
+    body: JSON.stringify(data),
+  });
+  const result = await res.json();
   return result;
 };

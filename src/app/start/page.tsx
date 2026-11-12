@@ -1,5 +1,3 @@
-"use client";
-
 import React from "react";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
@@ -13,34 +11,11 @@ import {
 } from "@/components/ui/card";
 import WelcomeCard from "./WelcomeCard";
 import Image from "next/image";
+import { GetFeaturedBooks } from "@/lib/actions/bothApi/bothApi";
+import { BooksTypes } from "@/lib/type";
 
-export default function StartPage() {
-  const featuredBooks = [
-    {
-      id: 1,
-      title: "Clean Code: A Handbook of Agile Software Craftsmanship",
-      author: "Robert C. Martin",
-      category: "Programming",
-      image:
-        "https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?auto=format&fit=crop&q=80&w=400",
-    },
-    {
-      id: 2,
-      title: "The Pragmatic Programmer",
-      author: "Andrew Hunt & David Thomas",
-      category: "Software Engineering",
-      image:
-        "https://images.unsplash.com/photo-1532012197267-da84d127e765?auto=format&fit=crop&q=80&w=400",
-    },
-    {
-      id: 3,
-      title: "Design Patterns: Elements of Reusable Object-Oriented Software",
-      author: "Erich Gamma et al.",
-      category: "Architecture",
-      image:
-        "https://images.unsplash.com/photo-1512820790803-83ca734da794?auto=format&fit=crop&q=80&w=400",
-    },
-  ];
+export default async function StartPage() {
+  const featuredBooks = await GetFeaturedBooks();
 
   return (
     <div className="min-h-screen bg-slate-50 text-slate-900 font-sans pb-16">
@@ -69,9 +44,9 @@ export default function StartPage() {
 
         {/* 4. Book Cards Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {featuredBooks.map((book) => (
+          {featuredBooks.map((book: BooksTypes) => (
             <Card
-              key={book.id}
+              key={book.publishedYear}
               className="border-slate-200/80 shadow-md hover:shadow-xl transition-all overflow-hidden flex flex-col justify-between group bg-white"
             >
               <div>
@@ -79,14 +54,14 @@ export default function StartPage() {
                 <div className="h-52 w-full bg-slate-100 overflow-hidden relative">
                   <div className="h-52 w-full bg-slate-100 overflow-hidden relative">
                     <Image
-                      src={book.image}
+                      src={book.coverImage}
                       alt={book.title}
                       fill
                       sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                       className="object-cover group-hover:scale-105 transition-transform duration-300"
                     />
                     <span className="absolute top-3 left-3 px-3 py-1 bg-black/60 backdrop-blur-md text-white text-xs font-medium rounded-full z-10">
-                      {book.category}
+                      {book.categoryName}
                     </span>
                   </div>
                 </div>
