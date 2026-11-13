@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { BookOpen, Library } from "lucide-react";
+import { ArrowLeft, BookOpen, Library } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { GetCategories } from "@/lib/actions/adminApi/adminApi";
@@ -26,6 +26,13 @@ export default async function AllBooksPage({
   return (
     <div className="min-h-screen bg-slate-50 pb-16 font-sans text-slate-900">
       <main className="mx-auto max-w-7xl space-y-6 px-4 pt-8 sm:px-6">
+        <Link
+          href="/start"
+          className="inline-flex items-center gap-2 text-sm font-semibold text-slate-500 transition-colors hover:text-emerald-700"
+        >
+          <ArrowLeft className="h-4 w-4" />
+          Back to Dashboard
+        </Link>
         {/* Page Header */}
         <header className="flex flex-col gap-4 border-b border-slate-200 pb-6 sm:flex-row sm:items-end sm:justify-between">
           <div>
@@ -33,6 +40,7 @@ export default async function AllBooksPage({
               <Library className="h-3.5 w-3.5" />
               Full Catalog
             </span>
+
             <h1 className="mt-3 text-3xl font-extrabold tracking-tight text-slate-900 sm:text-4xl">
               Browse all books
             </h1>

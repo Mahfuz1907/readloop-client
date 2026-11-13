@@ -5,9 +5,11 @@ import { Button } from "../ui/button";
 import { signOut } from "@/lib/auth-client";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import { GetSessionFromClient } from "@/lib/GetSessionFromClient";
 
 const Navbar = () => {
   const router = useRouter();
+  const user = GetSessionFromClient();
   return (
     <nav className="bg-emerald-950 text-white border-b border-emerald-900/50 sticky top-0 z-20">
       <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
@@ -19,22 +21,26 @@ const Navbar = () => {
         </Link>
 
         <div className="flex items-center space-x-3">
-          <Button
-            onClick={() =>
-              signOut({
-                fetchOptions: {
-                  onSuccess: () => {
-                    router.push("/sign-in");
+          {user ? (
+            <Button
+              onClick={() =>
+                signOut({
+                  fetchOptions: {
+                    onSuccess: () => {
+                      router.push("/sign-in");
+                    },
                   },
-                },
-              })
-            }
-            variant="ghost"
-            className="text-emerald-100 hover:text-white hover:bg-emerald-900 text-sm"
-          >
-            <LogOut className="h-4 w-4 mr-2" />
-            Sign Out
-          </Button>
+                })
+              }
+              variant="ghost"
+              className="text-emerald-100 hover:text-white hover:bg-emerald-900 text-sm"
+            >
+              <LogOut className="h-4 w-4 mr-2" />
+              Sign Out
+            </Button>
+          ) : (
+            ""
+          )}
         </div>
       </div>
     </nav>

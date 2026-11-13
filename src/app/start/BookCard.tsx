@@ -13,7 +13,7 @@ const BookCard = ({ book }: { book: BooksTypes }) => {
       className="group flex h-full flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition-all duration-300 outline-none hover:-translate-y-1 hover:border-emerald-300 hover:shadow-xl focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2"
     >
       {/* Cover */}
-      <div className="relative aspect-3/4 w-full overflow-hidden bg-slate-100">
+      <div className="relative aspect-4/3 w-full overflow-hidden bg-slate-100">
         {book.coverImage ? (
           <Image
             src={book.coverImage}

@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { BookOpen, Calendar, FileText, Pencil, Trash2 } from "lucide-react";
+import { BookOpen, Calendar, FileText } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
@@ -12,6 +12,7 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { BooksTypes } from "@/lib/type";
+import ActionButtons from "./ActionButtons";
 
 type BookTableProps = {
   books: BooksTypes[];
@@ -121,28 +122,8 @@ export default function BookTable({ books, hasFilters }: BookTableProps) {
                 </TableCell>
 
                 <TableCell className="sticky right-0 z-10 border-l border-slate-800/70 bg-slate-950 pr-6 text-right transition-colors group-hover:bg-slate-900">
-                  <div className="flex items-center justify-end gap-2">
-                    <Button
-                      type="button"
-                      variant="outline"
-                      size="sm"
-                      aria-label={`Edit ${book.title}`}
-                      title="Edit book"
-                      className="h-8 w-8 shrink-0 border-emerald-500/50 bg-emerald-950/50 p-0 text-emerald-400 transition-colors hover:border-emerald-500 hover:bg-emerald-600 hover:text-white focus-visible:ring-2 focus-visible:ring-emerald-500/60 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
-                    >
-                      <Pencil className="h-3.5 w-3.5" />
-                    </Button>
-                    <Button
-                      type="button"
-                      variant="outline"
-                      size="sm"
-                      aria-label={`Delete ${book.title}`}
-                      title="Delete book"
-                      className="h-8 w-8 shrink-0 border-rose-500/50 bg-rose-950/50 p-0 text-rose-400 transition-colors hover:border-rose-500 hover:bg-rose-600 hover:text-white focus-visible:ring-2 focus-visible:ring-rose-500/60 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
-                    >
-                      <Trash2 className="h-3.5 w-3.5" />
-                    </Button>
-                  </div>
+                  {/* Action buttons */}
+                  <ActionButtons book={book} />
                 </TableCell>
               </TableRow>
             ))
