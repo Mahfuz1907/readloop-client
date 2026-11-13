@@ -2,17 +2,10 @@ import React from "react";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
 import WelcomeCard from "./WelcomeCard";
-import Image from "next/image";
 import { GetFeaturedBooks } from "@/lib/actions/bothApi/bothApi";
 import { BooksTypes } from "@/lib/type";
+import BookCard from "./BookCard";
 
 export default async function StartPage() {
   const featuredBooks = await GetFeaturedBooks();
@@ -45,49 +38,7 @@ export default async function StartPage() {
         {/* 4. Book Cards Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {featuredBooks.map((book: BooksTypes) => (
-            <Card
-              key={book.publishedYear}
-              className="border-slate-200/80 shadow-md hover:shadow-xl transition-all overflow-hidden flex flex-col justify-between group bg-white"
-            >
-              <div>
-                {/* Book Thumbnail & Category Badge */}
-                <div className="h-52 w-full bg-slate-100 overflow-hidden relative">
-                  <div className="h-52 w-full bg-slate-100 overflow-hidden relative">
-                    <Image
-                      src={book.coverImage}
-                      alt={book.title}
-                      fill
-                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                      className="object-cover group-hover:scale-105 transition-transform duration-300"
-                    />
-                    <span className="absolute top-3 left-3 px-3 py-1 bg-black/60 backdrop-blur-md text-white text-xs font-medium rounded-full z-10">
-                      {book.categoryName}
-                    </span>
-                  </div>
-                </div>
-
-                <CardHeader className="space-y-1.5">
-                  <CardTitle
-                    className="text-lg font-bold text-slate-900 line-clamp-1"
-                    title={book.title}
-                  >
-                    {book.title}
-                  </CardTitle>
-                  <CardDescription className="text-xs text-slate-500">
-                    By {book.author}
-                  </CardDescription>
-                </CardHeader>
-              </div>
-
-              <CardContent className="pt-0 pb-6 px-6">
-                <Button
-                  variant="outline"
-                  className="w-full border-emerald-600 text-emerald-600 hover:bg-emerald-50 hover:text-emerald-700 font-medium"
-                >
-                  Request Borrow
-                </Button>
-              </CardContent>
-            </Card>
+            <BookCard key={book._id} book={book} />
           ))}
         </div>
 

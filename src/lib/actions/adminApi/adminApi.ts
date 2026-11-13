@@ -82,3 +82,26 @@ export const AddBook = async (data: AddBooksTypes) => {
   const result = await res.json();
   return result;
 };
+
+// edit book
+export const EditBook = async (data: AddBooksTypes, id: string) => {
+  const res = await fetch(`${BASE_URL}/books/edit/${id}`, {
+    method: "PUT",
+    body: JSON.stringify(data),
+    headers: {
+      "content-type": "application/json",
+    },
+  });
+
+  const result = await res.json();
+  return result;
+};
+
+// delete book
+export const DeleteBook = async (id: string) => {
+  const res = await fetch(`${BASE_URL}/books/delete/${id}`, {
+    method: "DELETE",
+  });
+  const result = res.json();
+  return result;
+};

@@ -46,7 +46,7 @@ export default async function BookDetailsPage({
           <div className="grid gap-8 p-6 sm:p-8 lg:grid-cols-[320px_minmax(0,1fr)] lg:gap-10">
             {/* Cover & availability */}
             <div className="mx-auto w-full max-w-72 lg:mx-0 lg:max-w-none">
-              <div className="relative aspect-[3/4] w-full overflow-hidden rounded-xl border border-slate-200 bg-slate-100 shadow-md">
+              <div className="relative aspect-3/4 w-full overflow-hidden rounded-xl border border-slate-200 bg-slate-100 shadow-md">
                 {book.coverImage ? (
                   <Image
                     src={book.coverImage}
