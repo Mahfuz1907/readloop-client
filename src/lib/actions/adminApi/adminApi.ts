@@ -1,4 +1,4 @@
-import { AddBooksTypes, AddCategoryTypes } from "@/lib/type";
+import { AddBooksTypes, AddCategoryTypes, CategoryTypes } from "@/lib/type";
 
 const BASE_URL = process.env.NEXT_PUBLIC_API_URL;
 
@@ -38,7 +38,7 @@ export const AddCategory = async (data: AddCategoryTypes) => {
 };
 
 // get all categories
-export const GetCategories = async (search = "") => {
+export const GetCategories = async (search = ""): Promise<CategoryTypes[]> => {
   const params = new URLSearchParams();
   if (search) params.set("search", search);
 
