@@ -3,8 +3,13 @@ import { AddBooksTypes, AddCategoryTypes } from "@/lib/type";
 const BASE_URL = process.env.NEXT_PUBLIC_API_URL;
 
 // get all users
-export const GetUsers = async (role: string) => {
-  const res = await fetch(`${BASE_URL}/users/role/${role}`);
+export const GetUsers = async (search = "") => {
+  const params = new URLSearchParams();
+  if (search) params.set("search", search);
+
+  const query = params.toString();
+
+  const res = await fetch(`${BASE_URL}/users${query ? `?${query}` : ""}`);
   const result = await res.json();
   return result;
 };
@@ -33,8 +38,12 @@ export const AddCategory = async (data: AddCategoryTypes) => {
 };
 
 // get all categories
-export const GetCategories = async () => {
-  const res = await fetch(`${BASE_URL}/categories`);
+export const GetCategories = async (search = "") => {
+  const params = new URLSearchParams();
+  if (search) params.set("search", search);
+
+  const query = params.toString();
+  const res = await fetch(`${BASE_URL}/categories${query ? `?${query}` : ""}`);
   const result = await res.json();
   return result;
 };

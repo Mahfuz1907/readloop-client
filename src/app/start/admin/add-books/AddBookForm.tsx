@@ -205,9 +205,9 @@ const AddBookForm = ({ categories }: { categories: CategoryTypes[] }) => {
           <Button
             type="reset"
             variant="ghost"
-            className="text-slate-400 hover:text-white text-xs sm:text-sm"
+            className="text-slate-400 text-xs sm:text-sm"
           >
-            Cancel
+            Reset
           </Button>
           <Button
             type="submit"

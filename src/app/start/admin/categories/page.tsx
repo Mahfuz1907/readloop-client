@@ -4,8 +4,11 @@ import { GetCategories } from "@/lib/actions/adminApi/adminApi";
 import DisplayAllCategories from "./DisplayAllCategories";
 import SearchImplement from "./SearchImplement";
 
-export default async function CategoriesPage() {
-  const categories = await GetCategories();
+export default async function CategoriesPage({
+  searchParams,
+}: PageProps<"/start/admin/categories">) {
+  const { search } = await searchParams;
+  const categories = await GetCategories(typeof search === "string" ? search : "");
 
   return (
     <div className="space-y-6 font-sans">

@@ -1,6 +1,5 @@
 import React from "react";
 import Link from "next/link";
-import Image from "next/image";
 import {
   BookOpen,
   Users,
@@ -21,8 +20,6 @@ import {
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { GetUsers } from "@/lib/actions/adminApi/adminApi";
-import { UserTypes } from "@/lib/type";
-import DeleteDialogue from "./DeleteDialog";
 
 export default async function AdminOverviewPage() {
   const users = await GetUsers("reader");
@@ -142,54 +139,7 @@ export default async function AdminOverviewPage() {
       </div>
 
       {/* 2. Main Analytics & Pending Actions Section */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-        {/* Left Column: Borrow Requests Needing Approval (2 cols) */}
-        <Card className="lg:col-span-2 bg-slate-950/60 border-slate-800 text-white shadow-xl backdrop-blur-md">
-          <CardHeader className="flex flex-row items-center justify-between border-b border-slate-800/80 pb-4">
-            <div>
-              <CardTitle className="text-lg font-bold text-white flex items-center gap-2">
-                <Clock className="h-5 w-5 text-amber-400" />
-                Manage Users
-              </CardTitle>
-              <CardDescription className="text-xs text-slate-400 mt-0.5">
-                Review and manage users
-              </CardDescription>
-            </div>
-          </CardHeader>
-
-          <CardContent className="pt-6">
-            <div className="space-y-4">
-              {users.map((user: UserTypes) => (
-                <div
-                  key={user._id}
-                  className="flex flex-col sm:flex-row sm:items-center justify-between p-4 rounded-xl bg-slate-900/80 border border-slate-800 hover:border-slate-700 transition-all gap-4"
-                >
-                  <div className="flex items-center gap-3.5">
-                    <div className="relative h-10 w-10 rounded-full overflow-hidden border border-emerald-500/40 shrink-0 bg-emerald-950">
-                      <Image
-                        src={user.image}
-                        alt={user.name}
-                        fill
-                        sizes="40px"
-                        className="object-cover"
-                      />
-                    </div>
-                    <div>
-                      <h4 className="text-sm font-semibold text-white leading-snug">
-                        {user.name}
-                      </h4>
-                    </div>
-                  </div>
-
-                  <div className="flex items-center gap-2 shrink-0 self-end sm:self-center">
-                    <DeleteDialogue user={user} />
-                  </div>
-                </div>
-              ))}
-            </div>
-          </CardContent>
-        </Card>
-
+      <div>
         {/* Right Column: Quick System Activity Stream (1 col) */}
         <Card className="bg-slate-950/60 border-slate-800 text-white shadow-xl backdrop-blur-md">
           <CardHeader className="border-b border-slate-800/80 pb-4">
